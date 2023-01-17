@@ -4,7 +4,7 @@ import cors from "cors";
 import noteRouter from "./routes/noteRouter.js";
 
 dotenv.config();
-const PORT = process.env.API_PORT || 3000;
+const PORT = process.env.API_PORT || 8080;
 
 const app = express();
 app.use(express.json());

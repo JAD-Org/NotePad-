@@ -1,5 +1,8 @@
 import { MongoClient } from "mongodb";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export default new MongoClient(
-  "mongodb+srv://alyssonaldrin:gE0hln8KZwkOOGRf@notepad.h1xhm4j.mongodb.net/?retryWrites=true&w=majority"
+  `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_HOST}/?retryWrites=true&w=majority`
 );
