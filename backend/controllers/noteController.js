@@ -4,6 +4,16 @@ import client from "../database/mongo.js";
 const saveNote = async (req, res) => {
   const note = req.body;
 
+  if (note.title === undefined || note.content === undefined) {
+    res.status(400).send("Título e conteúdo devem ser informados.");
+    return;
+  }
+
+  if (note.title === "" || note.content === "") {
+    res.status(400).send("Título ou conteúdo não devem ser vazios.");
+    return;
+  }
+
   try {
     await client.connect();
     const notesCollection = client.db("notepad").collection("notes");
@@ -18,11 +28,21 @@ const saveNote = async (req, res) => {
 };
 
 const listNotes = async (req, res) => {
-  //Adicionar logica de filtro por query
+  const { filter } = req.query;
+
   try {
     await client.connect();
     const notesCollection = client.db("notepad").collection("notes");
-    const notes = await notesCollection.find().toArray();
+
+    let notes;
+    if (filter && filter !== "") {
+      notes = await notesCollection
+        .find({ $text: { $search: filter } })
+        .sort({ score: { $meta: "textScore" } })
+        .toArray();
+    } else {
+      notes = await notesCollection.find().toArray();
+    }
 
     res.status(200).send(notes);
   } catch {
@@ -33,13 +53,17 @@ const listNotes = async (req, res) => {
 };
 
 const deleteNote = async (req, res) => {
-  //Adicionar logica caso nao exista nota para aquele id
   const { id } = req.params;
 
   try {
     await client.connect();
     const notesCollection = client.db("notepad").collection("notes");
-    await notesCollection.deleteOne({ _id: new ObjectID(id) });
+    const result = await notesCollection.deleteOne({ _id: new ObjectID(id) });
+
+    if (result.deletedCount === 0) {
+      res.status(400).send("Nota não encontrada.");
+      return;
+    }
 
     res.status(200).send("Nota deletada com sucesso!");
   } catch {
@@ -50,14 +74,13 @@ const deleteNote = async (req, res) => {
 };
 
 const updateNote = async (req, res) => {
-  //Adicionar logica caso nao exista nota para aquele id
   const { title, content } = req.body;
   const { id } = req.params;
 
   try {
     await client.connect();
     const notesCollection = client.db("notepad").collection("notes");
-    await notesCollection.updateOne(
+    const result = await notesCollection.updateOne(
       { _id: new ObjectID(id) },
       {
         $set: {
@@ -66,6 +89,11 @@ const updateNote = async (req, res) => {
         },
       }
     );
+
+    if (result.modifiedCount === 0) {
+      res.status(400).send("Nota não encontrada.");
+      return;
+    }
 
     res.status(200).send("Nota atualizada!");
   } catch {
