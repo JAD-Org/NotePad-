@@ -17,3 +17,9 @@ button {
   background-color: transparent;
   cursor: pointer;
 }
+
+input {
+  display: block;
+  color: inherit;
+  background-color: transparent;
+}
