@@ -1,0 +1,53 @@
+.note {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    max-width: 600px;
+    padding: 25px;
+    border-radius: 25px;
+    background-color: rgb(117, 117, 117);
+}
+
+.note .note-title {
+    font-weight: bold;
+    font-size: 2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    margin-block: .5em;
+}
+
+.note .note-content {
+    width: 100%;
+    margin-block: .5em;
+}
+
+.note .buttons {
+    display: flex;
+    align-self: flex-end;
+}
+
+.note .buttons > button {
+    width: 37.5px;
+    height: 37.5px;
+}
+
+.note .buttons > :last-child {
+    margin-left: 18.75px;
+}
+
+.note .add-button {
+    background-image: url('./../../imgs/plus.svg');
+    background-size: contain;
+}
+
+.note .edit-button {
+    background-image: url('./../../imgs/pencil.svg');
+    background-size: contain;
+}
+
+.note .delete-button {
+    background-image: url('./../../imgs/trash.svg');
+    background-size: contain;
+}
