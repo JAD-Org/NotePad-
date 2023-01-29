@@ -1,5 +1,5 @@
 async function create(title, content) {
-    await fetch('http://localhost:8080/note', {
+    const res = await fetch('http://localhost:8080/note', {
       method: 'POST',
       body: JSON.stringify({
         title, content
@@ -8,31 +8,37 @@ async function create(title, content) {
         'Content-type': 'application/json; charset=UTF-8'
       }
     });
+
+    return res;
 }
 
-async function read() {
-    const res = await fetch('http://localhost:8080/note');
+async function read(filter = '') {
+    const res = await fetch(`http://localhost:8080/note?filter=${filter}`);
     const data = await res.json();
   
     return data;
 }
 
 async function update(id, title, content) {
-    fetch(`http://localhost:8080/note/${id}`, {
+    const res = await fetch(`http://localhost:8080/note/${id}`, {
       method: 'PUT',
       body: JSON.stringify({
-        title: title, content: content
+        title, content
       }),
-      header: {
+      headers: {
         'Content-type': 'application/json; charset=UTF-8'
       }
     });
+
+    return res;
 }
 
 async function remove(id) {
-    fetch(`http://localhost:8080/note${id}`, {
+    const res = await fetch(`http://localhost:8080/note/${id}`, {
       method: 'DELETE'
     });
+
+    return res;
 }
 
 export default {
