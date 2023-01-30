@@ -11,6 +11,15 @@ Projeto II - BD II
  $ cd backend
 ```
 
+- Adicionar aqrquivo .env com as informações referentes ao banco de dados:
+
+```
+MONGODB_USER = yourUser
+MONGODB_PASSWORD = yourPassword
+MONGODB_HOST = yourHost
+API_PORT = yourPort
+```
+
 - Para instalar as dependências do projeto:
 
 ```
