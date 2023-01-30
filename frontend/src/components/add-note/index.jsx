@@ -10,7 +10,7 @@ export function AddNote({ titulo, conteudo }) {
   const contentInputRef = useRef(null);
 
   const createNote = async () => {
-    if(!titleInputRef.current.value || !contentInputRef.current.value) return;
+    if (!titleInputRef.current.value || !contentInputRef.current.value) return;
 
     await api.create(titleInputRef.current.value, contentInputRef.current.value);
 
@@ -19,7 +19,7 @@ export function AddNote({ titulo, conteudo }) {
 
   useEffect(() => {
     window.addEventListener('keydown', e => {
-      if(e.key !== 'Enter') return;
+      if (e.key !== 'Enter') return;
 
       createNote();
     })
@@ -38,17 +38,17 @@ export function AddNote({ titulo, conteudo }) {
           className='note-title'
           type='text'
           name='titulo'
-          defaultValue={ titulo }
-          placeholder='Título'
-          ref={ titleInputRef }
+          defaultValue={titulo}
+          placeholder='Digite o Título da Nota...'
+          ref={titleInputRef}
         />
         <input
           className='note-content'
           type='text'
           name='conteudo'
-          defaultValue={ conteudo }
-          placeholder='Conteúdo'
-          ref={ contentInputRef }
+          defaultValue={conteudo}
+          placeholder='Digite o Conteúdo da Nota...'
+          ref={contentInputRef}
         />
       </div>
     </div>
