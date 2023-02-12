@@ -18,6 +18,7 @@ MONGODB_USER = yourUser
 MONGODB_PASSWORD = yourPassword
 MONGODB_HOST = yourHost
 API_PORT = yourPort
+SESSION_SECRET=yourSessionSecret
 ```
 
 - Para instalar as dependências do projeto:
