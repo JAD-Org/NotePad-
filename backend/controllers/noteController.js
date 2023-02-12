@@ -14,6 +14,10 @@ const saveNote = async (req, res) => {
     return;
   }
 
+  const userId = req.session.userId;
+
+  note.userId = userId;
+
   try {
     await client.connect();
     const notesCollection = client.db("notepad").collection("notes");
@@ -44,7 +48,11 @@ const listNotes = async (req, res) => {
       notes = await notesCollection.find().toArray();
     }
 
-    res.status(200).send(notes);
+    const userNotes = notes.filter(
+      (note) => note.userId === req.session.userId
+    );
+
+    res.status(200).send(userNotes);
   } catch {
     res.status(400).send("Falha ao listar.");
   } finally {
