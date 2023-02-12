@@ -1,14 +1,18 @@
+import { Link } from "react-router-dom";
+
 import "./style.css";
 
 export function Register() {
 	return (
-		<form action='#' method='post'>
-			<input id='username' type='text' name='username'></input>
-			<input id='password' type='password' name='password'></input>
+		<form className="form" action='http://localhost:8080/user/create' method='post'>
+			<label htmlFor="email">E-mail:</label>
+			<input id='email' type='email' name='email' required></input>
+			<label htmlFor="password">Senha:</label>
+			<input id='password' type='password' name='password' required></input>
 
-			<button type='submit'></button>
+			<button type='submit'>Enviar</button>
 
-			<a href='#'>Login</a>
+			<Link to='/login'>Login</Link>
 		</form>
 	);
 };
