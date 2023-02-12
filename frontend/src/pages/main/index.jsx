@@ -15,7 +15,8 @@ export function Main() {
 
 	useEffect(() => {
 		(async () => {
-			setNotas(await api.read(search));
+			const res = await api.read(search);
+			setNotas(res === 'Usuário não autenticado.' ? [] : res);
 		})();
 	}, [search]);
 
