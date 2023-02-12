@@ -1,6 +1,6 @@
 import "./style.css";
 
-import { Note, AddNote, SearchNote } from "./../../components";
+import { Note, AddNote, SearchNote, NavBar } from "./../../components";
 
 import api from "./../../api";
 import { useEffect, useState } from "react";
@@ -22,6 +22,7 @@ export function Main() {
 
 	return (
 		<div>
+			<NavBar/>
 			<h1>TD Notes</h1>
 			<SearchNote
 				handleSearch={(search) => {
