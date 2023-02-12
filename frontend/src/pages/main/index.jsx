@@ -20,7 +20,7 @@ export function Main() {
 	}, [search]);
 
 	return (
-		<>
+		<div>
 			<h1>TD Notes</h1>
 			<SearchNote
 				handleSearch={(search) => {
@@ -36,6 +36,6 @@ export function Main() {
 					conteudo={nota.content}
 				/>
 			))}
-		</>
+		</div>
 	);
 }
