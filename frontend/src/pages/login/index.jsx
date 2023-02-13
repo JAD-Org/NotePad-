@@ -16,7 +16,7 @@ export function Login() {
 
 				<button type='submit'>Enviar</button>
 
-				<Link to='/register'>Register</Link>
+				<Link to='/register'>Registrar-se</Link>
 			</form>
 		</>
 	);
