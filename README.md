@@ -39,9 +39,9 @@ A porta aberta em execução no servidor será a porta 8080;
 
 #### FrontEnd
 
-- Acesse a pasta do Frontkend digitando:
+- Acesse a pasta do Frontend digitando:
 ```
- $ cd front
+ $ cd frontend
 ```
 
 - Para instalar as dependências do projeto:
