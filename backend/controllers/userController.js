@@ -1,4 +1,5 @@
 import client from "../database/mongo.js";
+import driver from "../database/neo4j.js";
 import bcrypt from "bcrypt";
 
 const login = async (req, res) => {
@@ -53,6 +54,8 @@ const createUser = async (req, res) => {
     return;
   }
 
+  const session = driver.session();
+
   try {
     await client.connect();
 
@@ -60,13 +63,18 @@ const createUser = async (req, res) => {
     user.password = hash;
 
     const usersCollection = client.db("notepad").collection("users");
-    await usersCollection.insertOne(user);
+    const { insertedId } = await usersCollection.insertOne(user);
+
+    await session.run("CREATE (:User{id:$id})", {
+      id: insertedId.toString(),
+    });
 
     res.status(201).send("Usuário registrado.");
   } catch {
     res.status(400).send("Falha ao salvar.");
   } finally {
     client.close();
+    session.close();
   }
 };
 

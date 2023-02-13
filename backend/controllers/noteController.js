@@ -1,5 +1,6 @@
 import { ObjectID } from "bson";
 import client from "../database/mongo.js";
+import driver from "../database/neo4j.js";
 
 const saveNote = async (req, res) => {
   const note = req.body;
@@ -18,10 +19,21 @@ const saveNote = async (req, res) => {
 
   note.userId = userId;
 
+  const session = driver.session();
+
   try {
     await client.connect();
     const notesCollection = client.db("notepad").collection("notes");
-    await notesCollection.insertOne(note);
+    const { insertedId } = await notesCollection.insertOne(note);
+
+    await session.run("CREATE (:Note{id:$id})", {
+      id: insertedId.toString(),
+    });
+
+    await session.run(
+      "MATCH (u:User{id:$userId}) MATCH (n:Note{id:$noteId}) CREATE (u)-[r:CRIOU]->(n)",
+      { userId: userId, noteId: insertedId.toString() }
+    );
 
     res.status(201).send("Nota criada.");
   } catch {
@@ -63,6 +75,8 @@ const listNotes = async (req, res) => {
 const deleteNote = async (req, res) => {
   const { id } = req.params;
 
+  const session = driver.session();
+
   try {
     await client.connect();
     const notesCollection = client.db("notepad").collection("notes");
@@ -72,6 +86,8 @@ const deleteNote = async (req, res) => {
       res.status(400).send("Nota não encontrada.");
       return;
     }
+
+    await session.run("MATCH (n:Note {id: $id}) DETACH DELETE n", { id: id });
 
     res.status(200).send("Nota deletada com sucesso!");
   } catch {
