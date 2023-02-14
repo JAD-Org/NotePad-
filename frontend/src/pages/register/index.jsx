@@ -6,15 +6,16 @@ import "./style.css";
 export function Register() {
 	return (
 		<>
-			<NavBar/>
+			<NavBar />
 			<form className="form" action='http://localhost:8080/user/create' method='post'>
 				<label htmlFor="email">E-mail:</label>
 				<input id='email' type='email' name='email' required></input>
 				<label htmlFor="password">Senha:</label>
 				<input id='password' type='password' name='password' required></input>
 
-				<button type='submit'>Enviar</button>
+				<button type='submit'>Cadastrar</button>
 
+				<p>Já possui uma conta?</p>
 				<Link to='/login'>Login</Link>
 			</form>
 		</>

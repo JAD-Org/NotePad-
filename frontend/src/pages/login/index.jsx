@@ -47,9 +47,10 @@ export function Login() {
           required
         ></input>
 
-        <button type="submit">Enviar</button>
+        <button type="submit">Entrar</button>
 
-        <Link to="/register">Registrar-se</Link>
+        <p>Não possui uma conta?</p>
+        <Link to="/register">Registre-se</Link>
       </form>
     </>
   );

@@ -1,0 +1,31 @@
+.form {
+	margin-top: 5em;
+	gap: 0.75rem;
+}
+
+.form label {
+	font-weight: bold;
+}
+
+.form button {
+	font-weight: bold;
+	animation: 0.25s ease-in-out;
+	transition: 0.25s;
+}
+
+.form button:hover {
+	transition: 0.25s;
+	background-color: #b5b5b5;
+	color: #f2f2f2;
+}
+
+.form > a {
+	animation: 0.25s ease-in-out;
+	transition: 0.25s;
+	font-weight: bold;
+}
+
+.form > a:hover {
+	transition: 0.25s;
+	color: #b5b5b5;
+}
