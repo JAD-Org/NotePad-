@@ -7,8 +7,8 @@ async function create(title, content) {
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
+      authorization: localStorage.getItem("token"),
     },
-    credentials: "include",
   });
 
   return res;
@@ -16,7 +16,9 @@ async function create(title, content) {
 
 async function read(filter = "") {
   const res = await fetch(`http://localhost:8080/note?filter=${filter}`, {
-    credentials: "include",
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
   });
   const data = await res.json();
 
@@ -32,8 +34,8 @@ async function update(id, title, content) {
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
+      authorization: localStorage.getItem("token"),
     },
-    credentials: "include",
   });
 
   return res;
@@ -42,8 +44,50 @@ async function update(id, title, content) {
 async function remove(id) {
   const res = await fetch(`http://localhost:8080/note/${id}`, {
     method: "DELETE",
-    credentials: "include",
   });
+
+  return res;
+}
+
+async function login(data) {
+  const res = await fetch(`http://localhost:8080/user/login`, {
+    method: "POST",
+    body: JSON.stringify({
+      email: data.email,
+      password: data.password,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  });
+
+  return res;
+}
+
+async function register(data) {
+  const res = await fetch(`http://localhost:8080/user/create`, {
+    method: "POST",
+    body: JSON.stringify({
+      email: data.email,
+      password: data.password,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  });
+
+  return res;
+}
+
+async function logout() {
+  const res = await fetch(`http://localhost:8080/user/logout`, {
+    method: "POST",
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  });
+
+  localStorage.removeItem("token");
 
   return res;
 }
@@ -53,4 +97,7 @@ export default {
   read,
   update,
   remove,
+  login,
+  logout,
+  register,
 };

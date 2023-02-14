@@ -1,23 +1,56 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../../api.js";
 
 import { NavBar } from "../../components";
 
 import "./style.css";
 
 export function Login() {
-	return (
-		<>
-			<NavBar/>
-			<form className="form" action='http://localhost:8080/user/login' method='post'>
-				<label htmlFor="email">E-mail:</label>
-				<input id='email' type='email' name='email' required></input>
-				<label htmlFor="password">Senha:</label>
-				<input id='password' type='password' name='password' required></input>
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  async function handleSubmit(event) {
+    event.preventDefault();
+    console.log(formData);
+    try {
+      const res = await api.login(formData);
+      const jsonRes = await res.json();
+      localStorage.setItem("token", jsonRes.token);
+    } catch {
+      alert("Algo deu errado!");
+    }
+  }
 
-				<button type='submit'>Enviar</button>
+  return (
+    <>
+      <NavBar />
+      <form className="form" onSubmit={handleSubmit}>
+        <label htmlFor="email">E-mail:</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={(event) =>
+            setFormData({ ...formData, email: event.target.value })
+          }
+          required
+        ></input>
+        <label htmlFor="password">Senha:</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={(event) =>
+            setFormData({ ...formData, password: event.target.value })
+          }
+          required
+        ></input>
 
-				<Link to='/register'>Registrar-se</Link>
-			</form>
-		</>
-	);
-};
+        <button type="submit">Enviar</button>
+
+        <Link to="/register">Registrar-se</Link>
+      </form>
+    </>
+  );
+}

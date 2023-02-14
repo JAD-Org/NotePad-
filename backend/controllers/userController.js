@@ -25,7 +25,7 @@ const login = async (req, res) => {
 
     if (user && match) {
       req.session.userId = user._id;
-      res.json("Login realizado com sucesso!");
+      res.json({ token: req.session.userId });
     } else {
       res.status(400).json("E-mail ou senha inválido.");
     }

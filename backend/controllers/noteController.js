@@ -15,7 +15,7 @@ const saveNote = async (req, res) => {
     return;
   }
 
-  const userId = req.session.userId;
+  const userId = req.headers.authorization;
 
   note.userId = userId;
 
@@ -61,7 +61,7 @@ const listNotes = async (req, res) => {
     }
 
     const userNotes = notes.filter(
-      (note) => note.userId === req.session.userId
+      (note) => note.userId === req.headers.authorization
     );
 
     res.status(200).send(userNotes);
