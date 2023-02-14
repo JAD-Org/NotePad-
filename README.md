@@ -17,6 +17,9 @@ Projeto II - BD II
 MONGODB_USER = yourUser
 MONGODB_PASSWORD = yourPassword
 MONGODB_HOST = yourHost
+NEO4J_USER = yourUser
+NEO4J_PASSWORD = yourPassword
+NEO4J_HOST = yourHost
 API_PORT = yourPort
 SESSION_SECRET=yourSessionSecret
 ```
