@@ -1,6 +1,7 @@
 # Notepad
 
-Projeto II - BD II
+Projeto II e III - BD II
+Prof. Francisco Paulo de Freitas Neto
 
 ### Execução
 
