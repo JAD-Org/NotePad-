@@ -4,7 +4,7 @@ import './style.css';
 
 export function NavBar() {
     return (
-        <nav>
+        <nav className='navbar'>
             <Link to='/'>Página principal</Link>
             <Link to='/register'>Registrar-se</Link>
             <Link to='/login'>Login</Link>

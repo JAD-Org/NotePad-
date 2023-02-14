@@ -46,9 +46,10 @@ export function Register() {
 					required
 				></input>
 
-				<button type="submit">Enviar</button>
+				<button type='submit'>Cadastrar</button>
 
-				<Link to="/login">Login</Link>
+				<p>Já possui uma conta?</p>
+				<Link to='/login'>Login</Link>
 			</form>
 		</>
 	);
