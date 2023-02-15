@@ -1,8 +1,14 @@
 # Notepad
 
-Projeto II e III - BD II
-
+## Projeto II e III - BD II
 Prof. Francisco Paulo de Freitas Neto
+
+### Design do Projeto
+
+- Figma
+```
+https://www.figma.com/file/TMr4Ms8GCuZS1cNkhLxFDO/TD-Notes?node-id=0%3A1&t=QdamBxieS3Ta01fs-1
+```
 
 ### Execução
 
