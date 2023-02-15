@@ -6,6 +6,8 @@ export function Logout() {
     async function handleClick() {
         try {
           await api.logout();
+          
+          window.location.reload();
         } catch {
           alert("Algo deu errado!");
         }
