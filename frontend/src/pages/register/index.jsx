@@ -14,6 +14,8 @@ export function Register() {
 	  console.log(formData);
 	  try {
 		await api.register(formData);
+
+		window.location.href = "/login";
 	  } catch {
 		alert("Algo deu errado!");
 	  }

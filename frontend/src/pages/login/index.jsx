@@ -15,6 +15,8 @@ export function Login() {
       const res = await api.login(formData);
       const jsonRes = await res.json();
       localStorage.setItem("token", jsonRes.token);
+
+	  window.location.href = "/";
     } catch {
       alert("Algo deu errado!");
     }
