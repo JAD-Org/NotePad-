@@ -12,10 +12,10 @@ async function startClient() {
     const notesCollection = client.db("notepad").collection("notes");
 
     await notesCollection.createIndex(
-      { titulo: "text", conteudo: "text" },
+      { title: "text", content: "text" },
       {
         default_language: "pt",
-        weights: { titulo: 2, conteudo: 1 },
+        weights: { title: 2, content: 1 },
       }
     );
   } finally {
