@@ -1,9 +1,22 @@
 .logout-button {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    background-color: red;
+	position: absolute;
+	top: 16px;
+	right: 25px;
+
+	width: 100px;
+	height: 45px;
+
+	border-radius: 25px;
+	border: 1px solid #b5b5b5;
+	background-color: #757575;
+
+	font-weight: bold;
+	transition: 0.25s;
+	animation: 0.25s ease-in-out;
+}
+
+.logout-button:hover {
+	transition: 0.25s;
+	background-color: #b5b5b5;
+	border: 1px solid #757575;
 }
