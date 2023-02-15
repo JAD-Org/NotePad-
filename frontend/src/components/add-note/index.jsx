@@ -17,14 +17,6 @@ export function AddNote({ titulo, conteudo }) {
     document.location.reload();
   }
 
-  useEffect(() => {
-    window.addEventListener('keydown', e => {
-      if (e.key !== 'Enter') return;
-
-      createNote();
-    })
-  }, []);
-
   return (
     <div className='note'>
       <nav className='buttons'>
