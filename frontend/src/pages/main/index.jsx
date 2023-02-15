@@ -4,6 +4,7 @@ import { Note, AddNote, SearchNote, NavBar } from "./../../components";
 
 import api from "./../../api";
 import { useEffect, useState } from "react";
+import { Logout } from "../../components/logout";
 
 export function Main() {
 	const [notas, setNotas] = useState([]);
@@ -23,6 +24,11 @@ export function Main() {
 	return (
 		<div>
 			<NavBar/>
+			{
+				localStorage.getItem("token") ?
+				<Logout/> :
+				<></>
+			}
 			<h1>TD Notes</h1>
 			<SearchNote
 				handleSearch={(search) => {
