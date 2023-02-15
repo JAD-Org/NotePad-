@@ -44,6 +44,9 @@ async function update(id, title, content) {
 async function remove(id) {
   const res = await fetch(`http://localhost:8080/note/${id}`, {
     method: "DELETE",
+    headers: {
+      authorization: localStorage.getItem("token")
+    }
   });
 
   return res;
